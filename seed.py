@@ -8,6 +8,7 @@ import random
 
 app = create_app()
 
+
 def seed_database():
     """Seed the database with sample data"""
 
@@ -135,28 +136,21 @@ def seed_database():
         users = [
             User(
                 username="john_doe",
-                email="john@example.com",
-                password_hash="password123",
-                first_name="John",
-                last_name="Doe"
+                email="john@example.com"
             ),
             User(
                 username="jane_smith",
-                email="jane@example.com",
-                password_hash="password123",
-                first_name="Jane",
-                last_name="Smith"
+                email="jane@example.com"
             ),
             User(
                 username="bob_wilson",
-                email="bob@example.com",
-                password_hash="password123",
-                first_name="Bob",
-                last_name="Wilson"
+                email="bob@example.com"
             )
         ]
 
         for user in users:
+            user.set_password("123456")
+
             db.session.add(user)
         db.session.commit()
 
@@ -180,6 +174,7 @@ def seed_database():
         db.session.commit()
 
         print("Database seeding completed!")
+
 
 if __name__ == '__main__':
     seed_database()

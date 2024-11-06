@@ -24,13 +24,14 @@ def create_app():
 
     with app.app_context():
         # Import models and schemas
-        from .models import Activity, Destination, Booking, User
+        from .models import Activity, Destination, Booking, User, Role
         from .schemas import activity_schema, activities_schema
         from .routes import (
             activity_routes,
             destination_routes,
             booking_routes,
             user_routes,
+            role_routes,
             auth_routes
         )
 
@@ -39,6 +40,7 @@ def create_app():
         app.register_blueprint(destination_routes.bp)
         app.register_blueprint(booking_routes.bp)
         app.register_blueprint(user_routes.bp)
+        app.register_blueprint(role_routes.bp)
         app.register_blueprint(auth_routes.bp)
 
         # Create all database tables

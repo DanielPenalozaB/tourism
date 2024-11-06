@@ -6,6 +6,7 @@ from marshmallow import fields
 class UserSchema(ma.SQLAlchemySchema):
     class Meta:
         model = User
+        include_fk = True
         load_instance = True
 
     id = ma.auto_field(dump_only=True)

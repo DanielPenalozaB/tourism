@@ -3,6 +3,7 @@ from app import create_app, db
 from app.models.destination import Destination
 from app.models.activity import Activity
 from app.models.user import User
+from app.models.role import Role
 from app.models.booking import Booking
 import random
 
@@ -20,6 +21,7 @@ def seed_database():
         Activity.query.delete()
         Destination.query.delete()
         User.query.delete()
+        Role.query.delete()
 
         # Create destinations
         destinations = [
@@ -132,19 +134,38 @@ def seed_database():
             db.session.add(activity)
         db.session.commit()
 
+        # Create roles
+        roles = [
+            Role(
+                name="admin",
+                description="Admin role with all permissions"
+            ),
+            Role(
+                name="user",
+                description="User role with limited permissions"
+            )
+        ]
+
+        for role in roles:
+            db.session.add(role)
+        db.session.commit()
+
         # Create users
         users = [
             User(
                 username="john_doe",
-                email="john@example.com"
+                email="john@example.com",
+                role_id=1
             ),
             User(
                 username="jane_smith",
-                email="jane@example.com"
+                email="jane@example.com",
+                role_id=2
             ),
             User(
                 username="bob_wilson",
-                email="bob@example.com"
+                email="bob@example.com",
+                role_id=2
             )
         ]
 

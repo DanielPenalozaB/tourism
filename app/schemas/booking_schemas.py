@@ -7,7 +7,3 @@ class BookingSchema(ma.SQLAlchemyAutoSchema):
         model = Booking
         include_fk = True
         load_instance = True
-
-
-booking_schema = BookingSchema()
-bookings_schema = BookingSchema(many=True)
